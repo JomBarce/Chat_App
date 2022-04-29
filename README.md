@@ -9,7 +9,7 @@ UI Integration:
 - search user: tester@email.com
 
 Note: 
-- Set hasContact to true in ChatPage.xaml.cs to show ChatPage with contact list.
+- Set hasContact to false in ChatPage.xaml.cs to show ChatPage with empty contact list.
 - Set isConnected to false in SearchPage.xaml.cs to show Error Pop up.
 - Change loggedUser to test@email.com in SearchPage.xaml.cs to show Error Pop up.
 
