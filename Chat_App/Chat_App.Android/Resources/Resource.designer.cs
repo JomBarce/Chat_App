@@ -16522,11 +16522,11 @@ namespace Chat_App.Droid
 			// aapt resource value: 0x7F070060
 			public const int cross = 2131165280;
 			
-			// aapt resource value: 0x7F070061
-			public const int deafult = 2131165281;
-			
 			// aapt resource value: 0x7F070062
-			public const int default_pic = 2131165282;
+			public const int defaultpic = 2131165282;
+			
+			// aapt resource value: 0x7F070061
+			public const int default_pic = 2131165281;
 			
 			// aapt resource value: 0x7F070063
 			public const int design_fab_background = 2131165283;

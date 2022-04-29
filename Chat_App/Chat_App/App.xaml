@@ -8,11 +8,13 @@
             <local:ScaleXAML x:Key="scale"/>
             <Color x:Key="TextColor">#000000</Color>
             <Color x:Key="BorderColor">#000000</Color>
-            <Color x:Key="BgColor">#1976D2</Color>
+            <Color x:Key="BgColor">#f5655b</Color>
             <Color x:Key="ButtonColor">#d4d4d4</Color>
             <Color x:Key="SubmitButton">#a9f2a2</Color>
+            <Color x:Key="SenderColor">#a9f2a2</Color>
+            <Color x:Key="ReceiverColor">#85c2ff</Color>
             <Style TargetType="NavigationPage">
-                <Setter Property="BarBackgroundColor" Value="#1976D2"/>
+                <Setter Property="BarBackgroundColor" Value="#f5655b"/>
                 <Setter Property="BarTextColor" Value="White"/>
             </Style>
         </ResourceDictionary>

@@ -10,7 +10,7 @@
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
                 <Frame Padding="0" HorizontalOptions="Center" CornerRadius="200" HeightRequest="250" WidthRequest="250" HasShadow="False"
                        BorderColor="{x:DynamicResource BorderColor}" IsClippedToBounds="True">
-                    <Image x:Name="ProfilePic" Source="default_pic" Aspect="AspectFit"/>
+                    <Image x:Name="ProfilePic" Source="defaultpic" Aspect="AspectFit"/>
                 </Frame>
                 <StackLayout Margin="10,10,10,0">
                     <Label x:Name="NameLabel" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="30"

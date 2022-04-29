@@ -24,7 +24,7 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell>
-                                <Frame HasShadow="False" OutlineColor="Green" CornerRadius="5" Padding="5,0" Margin="0,2,0,2" 
+                                <Frame HasShadow="False" OutlineColor="#f5655b" CornerRadius="5" Padding="5,0" Margin="0,2,0,2" 
                                        BackgroundColor="Transparent">
                                     <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Spacing="0">
                                         <Label Text="{Binding Name}" TextColor="{x:DynamicResource TextColor}" FontSize="20"/>

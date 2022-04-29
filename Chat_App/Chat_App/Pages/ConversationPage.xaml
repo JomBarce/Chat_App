@@ -24,12 +24,14 @@
                             <ViewCell>
                                 <Grid RowDefinitions="auto, auto">
                                     <Grid ColumnDefinitions="*, *" IsVisible="{Binding IsOwner}">
-                                        <Frame HasShadow="False" Grid.Column="1" Padding="10" CornerRadius="15" HorizontalOptions="End" BackgroundColor="#a9f2a2">
+                                        <Frame HasShadow="False" Grid.Column="1" Padding="10" CornerRadius="15" HorizontalOptions="End" 
+                                               BackgroundColor="{x:DynamicResource SenderColor}">
                                             <Label Text="{Binding Message}" TextColor="{x:DynamicResource TextColor}" FontSize="15" LineBreakMode="WordWrap"/>
                                         </Frame>
                                     </Grid>
                                     <Grid ColumnDefinitions="*, 40"  Grid.Row="1" IsVisible="{Binding IsOwner, Converter={StaticResource Inverter}}">
-                                        <Frame HasShadow="False" Grid.Column="0" Padding="10" CornerRadius="15" HorizontalOptions="Start" BackgroundColor="#85c2ff">
+                                        <Frame HasShadow="False" Grid.Column="0" Padding="10" CornerRadius="15" HorizontalOptions="Start" 
+                                               BackgroundColor="{x:DynamicResource ReceiverColor}">
                                             <Label Text="{Binding Message}" TextColor="{x:DynamicResource TextColor}" FontSize="15" LineBreakMode="WordWrap"/>
                                         </Frame>
                                     </Grid>
