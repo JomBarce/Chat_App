@@ -1,12 +1,55 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Chat_App.ConversationPage">
+             x:Class="Chat_App.ConversationPage"
+             x:Name="conversationPage"
+             xmlns:controls="clr-namespace:Chat_App.CustomRenderers" 
+             xmlns:converters="clr-namespace:Chat_App">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <converters:Inverter x:Key="Inverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <NavigationPage.TitleView BarBackgroundColor="#1976D2">
+        <Label x:Name="NavTitle" Text="" TextColor="White" FontSize="20"/>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <ListView x:Name="Messages" IsVisible="True" Margin="10,5,10,0" SeparatorVisibility="None" VerticalScrollBarVisibility="Never"
+                          HasUnevenRows="True" ItemsSource="{Binding Source={x:Reference conversationPage}, Path=BindingContext.Message}"
+                          HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}" SelectionMode="None">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid RowDefinitions="auto, auto">
+                                    <Grid ColumnDefinitions="*, *" IsVisible="{Binding IsOwner}">
+                                        <Frame HasShadow="False" Grid.Column="1" Padding="10" CornerRadius="15" HorizontalOptions="End" BackgroundColor="#a9f2a2">
+                                            <Label Text="{Binding Message}" TextColor="{x:DynamicResource TextColor}" FontSize="15" LineBreakMode="WordWrap"/>
+                                        </Frame>
+                                    </Grid>
+                                    <Grid ColumnDefinitions="*, 40"  Grid.Row="1" IsVisible="{Binding IsOwner, Converter={StaticResource Inverter}}">
+                                        <Frame HasShadow="False" Grid.Column="0" Padding="10" CornerRadius="15" HorizontalOptions="Start" BackgroundColor="#85c2ff">
+                                            <Label Text="{Binding Message}" TextColor="{x:DynamicResource TextColor}" FontSize="15" LineBreakMode="WordWrap"/>
+                                        </Frame>
+                                    </Grid>
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Frame BackgroundColor="#f2f2f2" Padding="10,10,10,10">
+                    <StackLayout VerticalOptions="End" Grid.Row="1" Orientation="Horizontal">
+                        <Grid HorizontalOptions="FillAndExpand">
+                            <Frame HasShadow="False" x:Name="MessageFrame" BorderColor="{x:DynamicResource BorderColor}" CornerRadius="5"/>
+                            <controls:BorderlessEntry x:Name="MessageEntry" Placeholder="Write your message here..." Keyboard="Text"
+                                                      Completed="Send_Clicked"/>
+                        </Grid>
+                        <ImageButton Source="send" BackgroundColor="Transparent" Margin="5,0,0,0" Clicked="Send_Clicked"
+                                     HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=20'}"/>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </Grid>
     </ContentPage.Content>
 </ContentPage>

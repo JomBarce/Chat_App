@@ -2,6 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Chat_App.ChatPage"
+             Title="ChatPage"
+             x:Name="chatPage"
              xmlns:controls="clr-namespace:Chat_App.CustomRenderers">
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
@@ -11,9 +13,31 @@
                     <controls:BorderlessEntry x:Name="SearchEntry" Placeholder="Search user email" Keyboard="Email" 
                                               ClearButtonVisibility="WhileEditing" Completed="Search_Clicked"/>
                 </Grid>
+                <ListView x:Name="ContactsList" IsVisible="True" Margin="10,5,10,5" SeparatorVisibility="None" VerticalScrollBarVisibility="Never"
+                          ItemTapped="Contact_Clicked" ItemsSource="{Binding Source={x:Reference chatPage}, Path=BindingContext.MyList}"
+                          HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}">
+                    <ListView.RowHeight>
+                        <OnPlatform x:TypeArguments="x:Int32">
+                            <On Platform="iOS, Android" Value="55"/>
+                        </OnPlatform>
+                    </ListView.RowHeight>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame HasShadow="False" OutlineColor="Green" CornerRadius="5" Padding="5,0" Margin="0,2,0,2" 
+                                       BackgroundColor="Transparent">
+                                    <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Spacing="0">
+                                        <Label Text="{Binding Name}" TextColor="{x:DynamicResource TextColor}" FontSize="20"/>
+                                        <Label Text="{Binding Email}" TextColor="{x:DynamicResource TextColor}" FontSize="15"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
-            <Label Text="You have no contacts as of the moment." VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
-                   TextColor="{x:DynamicResource TextColor}" FontSize="25"/>
+            <Label x:Name="EmptyContact" Text="You have no contacts as of the moment." VerticalOptions="CenterAndExpand" FontSize="25"
+                   HorizontalTextAlignment="Center" TextColor="{x:DynamicResource TextColor}" IsVisible="false"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

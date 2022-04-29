@@ -15,8 +15,8 @@ namespace Chat_App
         {
             InitializeComponent();
 
-            Application.Current.MainPage = new NavigationPage(new TabPage());
-            //MainPage = new NavigationPage(new MainPage());
+            //Application.Current.MainPage = new NavigationPage(new TabPage());
+            MainPage = new NavigationPage(new MainPage());
 
             /*
             if (dataClass.isSignedIn)

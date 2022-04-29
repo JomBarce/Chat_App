@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.ObjectModel;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,9 +8,36 @@ namespace Chat_App
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
-        public ChatPage()
+        bool hasContact = true;
+        private ObservableCollection<ContactModel> myList;
+
+        public ObservableCollection<ContactModel> MyList
         {
+            get { return myList; }
+            set { myList = value; }
+        }
+        
+
+        public ChatPage()
+        { 
             InitializeComponent();
+            if (hasContact == false)
+            {
+                EmptyContact.IsVisible = true;
+            }
+            else
+            {
+                EmptyContact.IsVisible = false;
+                this.BindingContext = this;
+                MyList = new ObservableCollection<ContactModel>();
+
+                for (int i = 1; i < 15; i++)
+                {
+                    MyList.Add(new ContactModel() { Id = i, Name = "Name LastName" + i.ToString(), Email = "email" + i.ToString() + "@email.com" });
+                }
+
+                ContactsList.ItemsSource = MyList;
+            }           
         }
 
         private async void Search_Clicked(object sender, EventArgs e)
@@ -30,6 +58,12 @@ namespace Chat_App
                     await DisplayAlert("", "User not found.", "Okay");
                 }
             }
+        }
+
+        async private void Contact_Clicked(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        {
+            ContactModel selectedItem = e.Item as ContactModel;
+            await Navigation.PushAsync(new ConversationPage(selectedItem), true);
         }
     }
 }

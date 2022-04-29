@@ -6,7 +6,7 @@
              x:Name="searchPage"
              xmlns:local="clr-namespace:Chat_App">
     <NavigationPage.TitleView BarBackgroundColor="#1976D2">
-        <Label Text="Add Contact" TextColor="White"/>
+        <Label Text="Add Contact" TextColor="White" FontSize="20"/>
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">

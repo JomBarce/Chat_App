@@ -8,6 +8,7 @@ namespace Chat_App
     public partial class SearchPage : ContentPage
     {
         string loggedUser = "tester@email.com";
+        string name = "Tester Testing";
         bool isConnected = false;
 
         public SearchPage()
@@ -17,7 +18,7 @@ namespace Chat_App
 
         private async void AddButton_Clicked(object sender, EventArgs e)
         {
-            bool retryBool = await DisplayAlert("Add contact", "Would you like to add <name>?", "Yes", "No");
+            bool retryBool = await DisplayAlert("Add contact", "Would you like to add " + name + "?", "Yes", "No");
             if (retryBool)
             {
                 if (loggedUser == "test@email.com")
