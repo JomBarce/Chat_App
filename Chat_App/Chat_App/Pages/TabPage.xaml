@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chat_App.TabPage"
+             xmlns:local="clr-namespace:Chat_App"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             android:TabbedPage.BarItemColor="DarkGray"
+             android:TabbedPage.BarSelectedItemColor="White"
+             BarBackgroundColor="#1976D2">
+    <!--<NavigationPage Title="ListPage">
+        <x:Arguments>
+            <local:ListPage/>
+        </x:Arguments>
+    </NavigationPage>-->
+    <local:ChatPage Title="Chat" Icon="ChatIcon"/>
+    <local:ProfilePage Title="Profile" Icon="ProfileIcon"/>
+</TabbedPage>

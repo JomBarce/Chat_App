@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Chat_App.ProfilePage"
+             Title="ProfilePage"
+             x:Name="profilePage"
+             xmlns:local="clr-namespace:Chat_App">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
+                <Frame Padding="0" HorizontalOptions="Center" CornerRadius="200" HeightRequest="250" WidthRequest="250" HasShadow="False"
+                       BorderColor="Black" IsClippedToBounds="True">
+                    <Image x:Name="ProfilePic" Source="Logo" Aspect="AspectFit"/>
+                </Frame>
+                <StackLayout Margin="10,10,10,0">
+                    <Label x:Name="NameLabel" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="Black" FontSize="30"
+                           Text="Test Testing Tester"/>
+                    <Label x:Name="EmailLabel" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" TextColor="Black" FontSize="25"
+                           Text="test@email.com"/>
+                    <Frame Padding="0" Margin="0,5,0,0" HasShadow="False" CornerRadius="5">
+                        <local:CustomButton Text="Sign out" BackgroundColor="#d4d4d4" TextColor="Black" Clicked="LogoutButton_Clicked"/>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

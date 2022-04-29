@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Chat_App.SignupPage"
+             xmlns:local="clr-namespace:Chat_App"
+             xmlns:controls="clr-namespace:Chat_App.CustomRenderers">
+    <ContentPage.Content>
+        <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <Image x:Name="logo" Source="Logo" Aspect="AspectFill"
+                       WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=320'}"/>
+                <StackLayout Margin="10,10,10,0">
+                    <Grid>
+                        <Frame HasShadow="False" x:Name="NameFrame" BorderColor="Black" CornerRadius="5"/>
+                        <controls:BorderlessEntry x:Name="NameEntry" Placeholder="Name" ReturnType="Next" Focused="TextBox_Focused"/>
+                    </Grid>
+                    <Grid>
+                        <Frame HasShadow="False" x:Name="EmailFrame" BorderColor="Black" CornerRadius="5"/>
+                        <controls:BorderlessEntry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" ReturnType="Next"
+                                                  Focused="TextBox_Focused"/>
+                    </Grid>
+                    <Grid>
+                        <Frame HasShadow="False" x:Name="PasswordFrame" BorderColor="Black" CornerRadius="5"/>
+                        <controls:BorderlessEntry x:Name="PasswordEntry" Placeholder="Password" ReturnType="Next" Focused="TextBox_Focused"
+                                                  IsPassword="{Binding Source={x:Reference ShowPasswordTrigger}, Path=HidePassword}"/>
+                        <ImageButton VerticalOptions="Center" Margin="0,0,10,0" HeightRequest="20" HorizontalOptions="End" Source="ic_eye_hide"
+                                     BackgroundColor="Transparent">
+                            <ImageButton.Triggers>
+                                <EventTrigger Event="Clicked">
+                                    <local:ShowPassword ShowIcon="ic_eye" HideIcon="ic_eye_hide" x:Name="ShowPasswordTrigger"/>
+                                </EventTrigger>
+                            </ImageButton.Triggers>
+                        </ImageButton>
+                    </Grid>
+                    <Grid>
+                        <Frame HasShadow="False" x:Name="ConfirmPasswordFrame" BorderColor="Black" CornerRadius="5"/>
+                        <controls:BorderlessEntry x:Name="ConfirmPasswordEntry" Placeholder="Confirm Password" Focused="TextBox_Focused"
+                                                  ReturnType="Done" IsPassword="{Binding Source={x:Reference ShowCPasswordTrigger}, Path=HidePassword}"/>
+                        <ImageButton VerticalOptions="Center" Margin="0,0,10,0" HeightRequest="20" HorizontalOptions="End" Source="ic_eye_hide"
+                                     BackgroundColor="Transparent">
+                            <ImageButton.Triggers>
+                                <EventTrigger Event="Clicked">
+                                    <local:ShowPassword ShowIcon="ic_eye" HideIcon="ic_eye_hide" x:Name="ShowCPasswordTrigger"/>
+                                </EventTrigger>
+                            </ImageButton.Triggers>
+                        </ImageButton>
+                    </Grid>
+                    <Frame Padding="0" Margin="0,5,0,0" HasShadow="False" CornerRadius="5">
+                        <local:CustomButton Text="Sign up" BackgroundColor="#a9f2a2" TextColor="Black" Clicked="SignUp_Clicked"/>
+                    </Frame>
+                    <Frame Padding="0" Margin="0,5,0,0" HasShadow="False" CornerRadius="5">
+                        <local:CustomButton Text="Sign in to your account" BackgroundColor="#d4d4d4" TextColor="Black" Clicked="SignIn_Clicked"/>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
