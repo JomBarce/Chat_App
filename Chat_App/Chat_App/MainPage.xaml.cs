@@ -23,7 +23,7 @@ namespace Chat_App
             {
                 if (EmailEntry.Text == "test@email.com" && PasswordEntry.Text == "12345")
                 {
-                    Application.Current.MainPage = new TabPage();
+                    Application.Current.MainPage = new NavigationPage(new TabPage());
                 }
                 else
                 {

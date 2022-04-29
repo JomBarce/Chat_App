@@ -14,16 +14,16 @@
                        WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=320'}"/>
                 <StackLayout Margin="10,10,10,0">
                     <Grid>
-                        <Frame HasShadow="False" x:Name="NameFrame" BorderColor="Black" CornerRadius="5"/>
+                        <Frame HasShadow="False" x:Name="NameFrame" BorderColor="{x:DynamicResource BorderColor}" CornerRadius="5"/>
                         <controls:BorderlessEntry x:Name="NameEntry" Placeholder="Name" ReturnType="Next" Focused="TextBox_Focused"/>
                     </Grid>
                     <Grid>
-                        <Frame HasShadow="False" x:Name="EmailFrame" BorderColor="Black" CornerRadius="5"/>
+                        <Frame HasShadow="False" x:Name="EmailFrame" BorderColor="{x:DynamicResource BorderColor}" CornerRadius="5"/>
                         <controls:BorderlessEntry x:Name="EmailEntry" Placeholder="Email" Keyboard="Email" ReturnType="Next"
                                                   Focused="TextBox_Focused"/>
                     </Grid>
                     <Grid>
-                        <Frame HasShadow="False" x:Name="PasswordFrame" BorderColor="Black" CornerRadius="5"/>
+                        <Frame HasShadow="False" x:Name="PasswordFrame" BorderColor="{x:DynamicResource BorderColor}" CornerRadius="5"/>
                         <controls:BorderlessEntry x:Name="PasswordEntry" Placeholder="Password" ReturnType="Next" Focused="TextBox_Focused"
                                                   IsPassword="{Binding Source={x:Reference ShowPasswordTrigger}, Path=HidePassword}"/>
                         <ImageButton VerticalOptions="Center" Margin="0,0,10,0" HeightRequest="20" HorizontalOptions="End" Source="ic_eye_hide"
@@ -36,7 +36,7 @@
                         </ImageButton>
                     </Grid>
                     <Grid>
-                        <Frame HasShadow="False" x:Name="ConfirmPasswordFrame" BorderColor="Black" CornerRadius="5"/>
+                        <Frame HasShadow="False" x:Name="ConfirmPasswordFrame" BorderColor="{x:DynamicResource BorderColor}" CornerRadius="5"/>
                         <controls:BorderlessEntry x:Name="ConfirmPasswordEntry" Placeholder="Confirm Password" Focused="TextBox_Focused"
                                                   ReturnType="Done" IsPassword="{Binding Source={x:Reference ShowCPasswordTrigger}, Path=HidePassword}"/>
                         <ImageButton VerticalOptions="Center" Margin="0,0,10,0" HeightRequest="20" HorizontalOptions="End" Source="ic_eye_hide"
@@ -49,10 +49,12 @@
                         </ImageButton>
                     </Grid>
                     <Frame Padding="0" Margin="0,5,0,0" HasShadow="False" CornerRadius="5">
-                        <local:CustomButton Text="Sign up" BackgroundColor="#a9f2a2" TextColor="Black" Clicked="SignUp_Clicked"/>
+                        <local:CustomButton Text="Sign up" Clicked="SignUp_Clicked" TextColor="{x:DynamicResource TextColor}"
+                                            BackgroundColor="{x:DynamicResource SubmitButton}"/>
                     </Frame>
                     <Frame Padding="0" Margin="0,5,0,0" HasShadow="False" CornerRadius="5">
-                        <local:CustomButton Text="Sign in to your account" BackgroundColor="#d4d4d4" TextColor="Black" Clicked="SignIn_Clicked"/>
+                        <local:CustomButton Text="Sign in to your account" Clicked="SignIn_Clicked" TextColor="{x:DynamicResource TextColor}"
+                                            BackgroundColor="{x:DynamicResource ButtonColor}"/>
                     </Frame>
                 </StackLayout>
             </StackLayout>

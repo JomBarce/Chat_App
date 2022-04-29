@@ -15,13 +15,13 @@ namespace Chat_App
         {
             InitializeComponent();
 
-            Application.Current.MainPage = new TabPage();
+            Application.Current.MainPage = new NavigationPage(new TabPage());
             //MainPage = new NavigationPage(new MainPage());
 
             /*
             if (dataClass.isSignedIn)
             {
-                Application.Current.MainPage = new TabPage();
+                 Application.Current.MainPage = new NavigationPage(new TabPage());
             }
             else
             {

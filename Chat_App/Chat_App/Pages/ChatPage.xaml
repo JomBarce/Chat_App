@@ -7,13 +7,13 @@
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
                 <Grid Margin="10,10,10,0">
-                    <Frame HasShadow="False" x:Name="SearchFrame" BorderColor="Black" CornerRadius="5"/>
+                    <Frame HasShadow="False" x:Name="SearchFrame" BorderColor="{x:DynamicResource BorderColor}" CornerRadius="5"/>
                     <controls:BorderlessEntry x:Name="SearchEntry" Placeholder="Search user email" Keyboard="Email" 
                                               ClearButtonVisibility="WhileEditing" Completed="Search_Clicked"/>
                 </Grid>
             </StackLayout>
-            <Label Text="You have no contacts as of the moment." VerticalOptions="CenterAndExpand"
-                   HorizontalTextAlignment="Center" TextColor="Black" FontSize="25"/>
+            <Label Text="You have no contacts as of the moment." VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" 
+                   TextColor="{x:DynamicResource TextColor}" FontSize="25"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

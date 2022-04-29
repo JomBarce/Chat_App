@@ -1,10 +1,13 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Chat_App.ProfilePage"
-             Title="ProfilePage"
-             x:Name="profilePage"
+             x:Class="Chat_App.SearchPage"
+             Title="SearchPage"
+             x:Name="searchPage"
              xmlns:local="clr-namespace:Chat_App">
+    <NavigationPage.TitleView BarBackgroundColor="#1976D2">
+        <Label Text="Add Contact" TextColor="White"/>
+    </NavigationPage.TitleView>
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
@@ -14,12 +17,12 @@
                 </Frame>
                 <StackLayout Margin="10,10,10,0">
                     <Label x:Name="NameLabel" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="30"
-                           TextColor="{x:DynamicResource TextColor}" Text="Test Testing Tester"/>
+                           TextColor="{x:DynamicResource TextColor}" Text="Tester Testing"/>
                     <Label x:Name="EmailLabel" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="25"
-                           TextColor="{x:DynamicResource TextColor}" Text="test@email.com"/>
+                           TextColor="{x:DynamicResource TextColor}" Text="tester@email.com"/>
                     <Frame Padding="0" Margin="0,5,0,0" HasShadow="False" CornerRadius="5">
-                        <local:CustomButton Text="Sign out" Clicked="LogoutButton_Clicked" BackgroundColor="{x:DynamicResource ButtonColor}" 
-                                            TextColor="{x:DynamicResource TextColor}" />
+                        <local:CustomButton Text="Add" Clicked="AddButton_Clicked" BackgroundColor="{x:DynamicResource SubmitButton}"
+                                            TextColor="{x:DynamicResource TextColor}"/>
                     </Frame>
                 </StackLayout>
             </StackLayout>

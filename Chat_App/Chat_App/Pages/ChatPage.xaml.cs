@@ -20,9 +20,10 @@ namespace Chat_App
             }
             else
             {
-                if (SearchEntry.Text == "test@email.com")
+                if (SearchEntry.Text == "tester@email.com")
                 {
-                    App.Current.MainPage = new NavigationPage(new MainPage());
+                    SearchEntry.Text = string.Empty;
+                    await Navigation.PushAsync(new SearchPage(), true);
                 }
                 else
                 {
