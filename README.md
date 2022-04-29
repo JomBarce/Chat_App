@@ -8,7 +8,10 @@ UI Integration:
 - password: 12345
 - search user: tester@email.com
 
-Note: Set hasContact to true in ChatPage.xaml.cs to ChatPage with contact list.
+Note: 
+- Set hasContact to true in ChatPage.xaml.cs to show ChatPage with contact list.
+- Set isConnected to false in SearchPage.xaml.cs to show Error Pop up.
+- Change loggedUser to test@email.com in SearchPage.xaml.cs to show Error Pop up.
 
 Submitted by:
 - JOMER ALLAN G. BARCENILLA
