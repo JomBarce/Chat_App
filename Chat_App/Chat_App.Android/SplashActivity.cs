@@ -3,7 +3,7 @@ using AndroidX.AppCompat.App;
 
 namespace Chat_App.Droid
 {
-    [Activity(Label = "Chat_App", Icon = "@mipmap/icon", Theme = "@style/splashscreen", MainLauncher = true, NoHistory = true)]
+    [Activity(Label = "Chat_App", Icon = "@mipmap/ic_launcher", Theme = "@style/splashscreen", MainLauncher = true, NoHistory = true)]
     public class SplashActivity : AppCompatActivity
     {
         protected override void OnResume()

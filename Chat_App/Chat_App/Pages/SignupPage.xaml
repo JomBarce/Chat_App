@@ -9,10 +9,9 @@
              xmlns:controls="clr-namespace:Chat_App.CustomRenderers">
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-                <Image x:Name="logo" Source="Logo" Aspect="AspectFill"
-                       WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=320'}"/>
-                <StackLayout Margin="10,10,10,0">
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                <Image x:Name="logo" Source="Logo" WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=300'}"/>
+                <StackLayout Margin="10,0,10,0">
                     <Grid>
                         <Frame HasShadow="False" x:Name="NameFrame" BorderColor="{x:DynamicResource BorderColor}" CornerRadius="5"/>
                         <controls:BorderlessEntry x:Name="NameEntry" Placeholder="Name" ReturnType="Next" Focused="TextBox_Focused"/>

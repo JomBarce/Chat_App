@@ -5,8 +5,8 @@
              xmlns:local="clr-namespace:Chat_App"
              xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
              android:TabbedPage.ToolbarPlacement="Bottom"
-             android:TabbedPage.BarItemColor="White "
-             android:TabbedPage.BarSelectedItemColor="#ffff99"
+             android:TabbedPage.BarItemColor="#393e5e "
+             android:TabbedPage.BarSelectedItemColor="White"
              BarBackgroundColor="{x:DynamicResource BgColor}">
     <!--<NavigationPage Title="ListPage">
         <x:Arguments>

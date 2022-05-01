@@ -6,13 +6,13 @@
     <Application.Resources>
         <ResourceDictionary>
             <local:ScaleXAML x:Key="scale"/>
-            <Color x:Key="TextColor">#000000</Color>
+            <Color x:Key="TextColor">#393e5e</Color>
             <Color x:Key="BorderColor">#000000</Color>
-            <Color x:Key="BgColor">#f5655b</Color>
-            <Color x:Key="ButtonColor">#d4d4d4</Color>
-            <Color x:Key="SubmitButton">#a9f2a2</Color>
-            <Color x:Key="SenderColor">#a9f2a2</Color>
-            <Color x:Key="ReceiverColor">#85c2ff</Color>
+            <Color x:Key="BgColor">#ed5c5e</Color>
+            <Color x:Key="ButtonColor">#fae27a</Color>
+            <Color x:Key="SubmitButton">#fa8e90</Color>
+            <Color x:Key="SenderColor">#fae27a</Color>
+            <Color x:Key="ReceiverColor">#ff787a</Color>
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="#f5655b"/>
                 <Setter Property="BarTextColor" Value="White"/>
