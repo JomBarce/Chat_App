@@ -15,8 +15,15 @@ namespace Chat_App
         {
             InitializeComponent();
 
-            //Application.Current.MainPage = new NavigationPage(new TabPage());
-            MainPage = new NavigationPage(new MainPage());
+            var isLoogged = Xamarin.Essentials.SecureStorage.GetAsync("isLogged").Result;
+            if (isLoogged == "1")
+            {
+                MainPage = new NavigationPage(new TabPage());
+            }
+            else
+            {
+                MainPage = new NavigationPage(new MainPage());
+            }
 
             /*
             if (dataClass.isSignedIn)

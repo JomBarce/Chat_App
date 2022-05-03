@@ -13,10 +13,15 @@ namespace Chat_App
             InitializeComponent();
         }
 
-        private void LogoutButton_Clicked(object sender, EventArgs e)
+        private async void LogoutButton_Clicked(object sender, EventArgs e)
         {
-
-            App.Current.MainPage = new NavigationPage(new MainPage());
+            bool exitBool = await DisplayAlert("Sign out", "Sign out from device?", "Yes", "No");
+            if (exitBool)
+            {
+                await Xamarin.Essentials.SecureStorage.SetAsync("isLogged", "0");
+                App.Current.MainPage = new NavigationPage(new MainPage());
+            }
+            
         }
     }
 }

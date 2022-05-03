@@ -23,6 +23,7 @@ namespace Chat_App
             {
                 if (EmailEntry.Text == "test@email.com" && PasswordEntry.Text == "12345")
                 {
+                    await Xamarin.Essentials.SecureStorage.SetAsync("isLogged", "1");
                     Application.Current.MainPage = new NavigationPage(new TabPage());
                 }
                 else
