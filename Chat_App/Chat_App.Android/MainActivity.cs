@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace Chat_App.Droid
 {
-    [Activity(Label = "Chat_App", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = false)]
+    [Activity(Label = "Chat_App", Icon = "@mipmap/ic_launcher", Theme = "@style/MainTheme", MainLauncher = false, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation, ScreenOrientation = ScreenOrientation.Portrait)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
