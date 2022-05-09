@@ -16,12 +16,12 @@
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-                <ListView x:Name="Messages" IsVisible="True" Margin="10,5,10,0" SeparatorVisibility="None" VerticalScrollBarVisibility="Never"
+                <ListView x:Name="Messages" Margin="10,5,10,0" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" 
                           HasUnevenRows="True" ItemsSource="{Binding Source={x:Reference conversationPage}, Path=BindingContext.Message}"
-                          HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}" SelectionMode="None">
+                          HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
-                            <ViewCell>
+                            <ViewCell IsEnabled="false">
                                 <Grid RowDefinitions="auto, auto">
                                     <Grid ColumnDefinitions="*, *" IsVisible="{Binding IsOwner}">
                                         <Frame HasShadow="False" Grid.Column="1" Padding="10" CornerRadius="15" HorizontalOptions="End" 
@@ -40,14 +40,14 @@
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-                <Frame BackgroundColor="#f2f2f2" Padding="10,10,10,10">
-                    <StackLayout VerticalOptions="End" Grid.Row="1" Orientation="Horizontal">
-                        <Grid HorizontalOptions="FillAndExpand">
+                <Frame BackgroundColor="#f2f2f2" Padding="10">
+                    <StackLayout VerticalOptions="EndAndExpand" Grid.Row="1" Orientation="Horizontal">
+                        <Grid HorizontalOptions="FillAndExpand" Padding="0">
                             <Frame HasShadow="False" x:Name="MessageFrame" BorderColor="{x:DynamicResource BorderColor}" CornerRadius="5"/>
                             <controls:BorderlessEntry x:Name="MessageEntry" Placeholder="Write your message here..." Keyboard="Text"
-                                                      Completed="Send_Clicked"/>
+                                                      Completed="Send_Clicked" Focused="OnFocused"/>
                         </Grid>
-                        <ImageButton Source="send" BackgroundColor="Transparent" Margin="5,0,0,0" Clicked="Send_Clicked"
+                        <ImageButton Source="send" BackgroundColor="Transparent" Margin="5" Clicked="Send_Clicked"
                                      HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=20'}"/>
                     </StackLayout>
                 </Frame>

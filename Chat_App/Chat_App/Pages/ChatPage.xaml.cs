@@ -16,7 +16,6 @@ namespace Chat_App
             get { return myList; }
             set { myList = value; }
         }
-        
 
         public ChatPage()
         { 
@@ -37,7 +36,7 @@ namespace Chat_App
                 }
 
                 ContactsList.ItemsSource = MyList;
-            }           
+            }
         }
 
         private async void Search_Clicked(object sender, EventArgs e)
@@ -60,7 +59,7 @@ namespace Chat_App
             }
         }
 
-        async private void Contact_Clicked(object sender, Xamarin.Forms.ItemTappedEventArgs e)
+        async private void Contact_Clicked(object sender, ItemTappedEventArgs e)
         {
             ContactModel selectedItem = e.Item as ContactModel;
             await Navigation.PushAsync(new ConversationPage(selectedItem), true);

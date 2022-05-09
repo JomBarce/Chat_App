@@ -13,7 +13,7 @@
                     <controls:BorderlessEntry x:Name="SearchEntry" Placeholder="Search user email" Keyboard="Email" 
                                               ClearButtonVisibility="WhileEditing" Completed="Search_Clicked"/>
                 </Grid>
-                <ListView x:Name="ContactsList" IsVisible="True" Margin="10,5,10,5" SeparatorVisibility="None" VerticalScrollBarVisibility="Never"
+                <ListView x:Name="ContactsList" Margin="10,5,10,5" SeparatorVisibility="None" VerticalScrollBarVisibility="Never"
                           ItemTapped="Contact_Clicked" ItemsSource="{Binding Source={x:Reference chatPage}, Path=BindingContext.MyList}"
                           HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}">
                     <ListView.RowHeight>
