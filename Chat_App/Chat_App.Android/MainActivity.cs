@@ -5,6 +5,7 @@ using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms;
+using Firebase;
 
 namespace Chat_App.Droid
 {
@@ -26,7 +27,9 @@ namespace Chat_App.Droid
             {
                 App.screenWidth = (9 * App.screenHeight) / 16;
             }
-            
+
+            FirebaseApp.InitializeApp(this);
+
             base.OnCreate(savedInstanceState);
 
             Xamarin.Essentials.Platform.Init(this, savedInstanceState);

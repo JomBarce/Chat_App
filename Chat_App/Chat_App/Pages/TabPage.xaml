@@ -8,11 +8,7 @@
              android:TabbedPage.BarItemColor="#393e5e "
              android:TabbedPage.BarSelectedItemColor="White"
              BarBackgroundColor="{x:DynamicResource BgColor}">
-    <!--<NavigationPage Title="ListPage">
-        <x:Arguments>
-            <local:ListPage/>
-        </x:Arguments>
-    </NavigationPage>-->
+    
     <local:ChatPage Title="Chat" Icon="ChatIcon"/>
-    <local:ProfilePage Title="Profile" Icon="ProfileIcon"/>
+    <local:ProfilePage x:Name="profilePage" Title="Profile" Icon="ProfileIcon"/>
 </TabbedPage>

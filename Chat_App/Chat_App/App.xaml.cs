@@ -10,22 +10,11 @@ namespace Chat_App
         public static float screenHeight { get; set; }
         public static float appScale { get; set; }
 
-        //DataClass dataClass = DataClass.GetInstance;
+        DataClass dataClass = DataClass.GetInstance;
         public App()
         {
             InitializeComponent();
 
-            var isLoogged = Xamarin.Essentials.SecureStorage.GetAsync("isLogged").Result;
-            if (isLoogged == "1")
-            {
-                MainPage = new NavigationPage(new TabPage());
-            }
-            else
-            {
-                MainPage = new NavigationPage(new MainPage());
-            }
-
-            /*
             if (dataClass.isSignedIn)
             {
                  Application.Current.MainPage = new NavigationPage(new TabPage());
@@ -34,7 +23,6 @@ namespace Chat_App
             {
                 MainPage = new NavigationPage(new MainPage());
             }
-            */
         }
 
         protected override void OnStart()

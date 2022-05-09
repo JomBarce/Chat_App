@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using Xamarin.Forms;
@@ -46,7 +47,7 @@ namespace Chat_App
             set
             {
                 _loggedInUser = value;
-                //Application.Current.Properties["loggedInUser"] = JsonConvert.SerializeObject(_loggedInUser);
+                Application.Current.Properties["loggedInUser"] = JsonConvert.SerializeObject(_loggedInUser);
                 Application.Current.SavePropertiesAsync();
                 OnPropertyChanged();
             }
@@ -54,7 +55,7 @@ namespace Chat_App
             {
                 if (_loggedInUser == null && Application.Current.Properties.ContainsKey("loggedInUser"))
                 {
-                    //_loggedInUser = JsonConvert.DeserializeObject<UserModel>(Application.Current.Properties["loggedInUser"].ToString());
+                    _loggedInUser = JsonConvert.DeserializeObject<UserModel>(Application.Current.Properties["loggedInUser"].ToString());
                 }
 
                 return _loggedInUser;

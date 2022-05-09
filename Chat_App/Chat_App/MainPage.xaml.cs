@@ -5,10 +5,12 @@ namespace Chat_App
 {
     public partial class MainPage : ContentPage
     {
+        DataClass dataClass = DataClass.GetInstance;
         public MainPage()
         {
             InitializeComponent();
             NavigationPage.SetHasNavigationBar(this, false);
+            EmailEntry.Text = dataClass.loggedInUser != null ? dataClass.loggedInUser.email : "";
         }
 
         private async void SignIn_Clicked(object sender, EventArgs e)
@@ -21,14 +23,21 @@ namespace Chat_App
             }
             else
             {
-                if (EmailEntry.Text == "test@email.com" && PasswordEntry.Text == "12345")
+                FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+                res = await DependencyService.Get<iFirebaseAuth>().LoginWithEmailPassword(EmailEntry.Text, PasswordEntry.Text);
+                if (res.Status == true)
                 {
-                    await Xamarin.Essentials.SecureStorage.SetAsync("isLogged", "1");
                     Application.Current.MainPage = new NavigationPage(new TabPage());
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Account non-existent.", "Okay");
+                    bool retryBool = await DisplayAlert("Error", res.Response + " Retry?", "Yes", "No");
+                    if (retryBool)
+                    {
+                        EmailEntry.Text = string.Empty;
+                        PasswordEntry.Text = string.Empty;
+                        EmailEntry.Focus();
+                    }
                 }
             }
         }

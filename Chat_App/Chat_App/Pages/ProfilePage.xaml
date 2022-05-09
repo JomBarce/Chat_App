@@ -14,9 +14,9 @@
                 </Frame>
                 <StackLayout Margin="10,10,10,0">
                     <Label x:Name="NameLabel" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="30"
-                           TextColor="{x:DynamicResource TextColor}" Text="Test Testing Tester"/>
+                           TextColor="{x:DynamicResource TextColor}" BindingContext="{x:Reference Name=profilePage}" Text="{Binding Name}"/>
                     <Label x:Name="EmailLabel" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="25"
-                           TextColor="{x:DynamicResource TextColor}" Text="test@email.com"/>
+                           TextColor="{x:DynamicResource TextColor}" BindingContext="{x:Reference Name=profilePage}" Text="{Binding Email}"/>
                     <Frame Padding="0" Margin="0,5,0,0" HasShadow="False" CornerRadius="5">
                         <local:CustomButton Text="Sign out" Clicked="LogoutButton_Clicked" BackgroundColor="{x:DynamicResource ButtonColor}" 
                                             TextColor="{x:DynamicResource TextColor}" />

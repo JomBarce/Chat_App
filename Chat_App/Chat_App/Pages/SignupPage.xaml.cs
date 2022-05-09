@@ -1,5 +1,5 @@
-﻿using System;
-
+﻿using Plugin.CloudFirestore;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,10 +8,13 @@ namespace Chat_App
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignupPage : ContentPage
     {
+        DataClass dataClass = DataClass.GetInstance;
         public SignupPage()
         {
             InitializeComponent();
         }
+
+        [Obsolete]
         private async void SignUp_Clicked(object sender, EventArgs e)
         {
             if ( string.IsNullOrEmpty(NameEntry.Text) || string.IsNullOrEmpty(EmailEntry.Text) || string.IsNullOrEmpty(PasswordEntry.Text) || string.IsNullOrEmpty(ConfirmPasswordEntry.Text))
@@ -32,14 +35,29 @@ namespace Chat_App
                 }
                 else
                 {
-                    try
+                    FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+                    res = await DependencyService.Get<iFirebaseAuth>().SignUpWithEmailPassword(NameEntry.Text, EmailEntry.Text, PasswordEntry.Text);
+                    if (res.Status == true)
                     {
-                        await DisplayAlert("Success", "Sign up successful. Verification email sent.", "Okay");
-                        await Navigation.PopModalAsync(true);
+                        try
+                        {
+                            await CrossCloudFirestore.Current
+                             .Instance
+                             .GetCollection("users")
+                             .GetDocument(dataClass.loggedInUser.uid)
+                             .SetDataAsync(dataClass.loggedInUser);
+
+                            await DisplayAlert("Success", res.Response, "Okay");
+                            await Navigation.PopModalAsync(true);
+                        }
+                        catch (Exception ex)
+                        {
+                            await DisplayAlert("Error", ex.Message, "Okay");
+                        }
                     }
-                    catch (Exception ex)
+                    else
                     {
-                        await DisplayAlert("Error", ex.Message, "Okay");
+                        await DisplayAlert("Error", res.Response, "Okay");
                     }
                 }
             }

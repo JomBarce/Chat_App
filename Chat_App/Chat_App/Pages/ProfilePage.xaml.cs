@@ -1,4 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -7,7 +12,22 @@ namespace Chat_App
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ProfilePage : ContentPage
     {
+        public static readonly BindableProperty NameProperty = BindableProperty.Create(nameof(Name), typeof(string), typeof(ProfilePage), "");
+        public string Name
+        {
+            get { return (string)GetValue(NameProperty); }
+            set { SetValue(NameProperty, value); }
+        }
 
+        public static readonly BindableProperty EmailProperty = BindableProperty.Create(nameof(Email), typeof(string), typeof(ProfilePage), "");
+        
+        public string Email
+        {
+            get { return (string)GetValue(EmailProperty); }
+            set { SetValue(EmailProperty, value); }
+        }
+        DataClass dataClass = DataClass.GetInstance;
+        
         public ProfilePage()
         {
             InitializeComponent();
@@ -15,13 +35,17 @@ namespace Chat_App
 
         private async void LogoutButton_Clicked(object sender, EventArgs e)
         {
-            bool exitBool = await DisplayAlert("Sign out", "Sign out from device?", "Yes", "No");
-            if (exitBool)
+            FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+            res = DependencyService.Get<iFirebaseAuth>().SignOut();
+
+            if (res.Status == true)
             {
-                await Xamarin.Essentials.SecureStorage.SetAsync("isLogged", "0");
                 App.Current.MainPage = new NavigationPage(new MainPage());
             }
-            
+            else
+            {
+                await DisplayAlert("Error", res.Response, "Okay");
+            }
         }
     }
 }
