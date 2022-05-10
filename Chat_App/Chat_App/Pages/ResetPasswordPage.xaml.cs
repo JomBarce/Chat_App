@@ -1,5 +1,4 @@
 ﻿using System;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -23,14 +22,17 @@ namespace Chat_App
             }
             else
             {  
-                if (EmailEntry.Text == "test@email.com")
+                FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+                res = await DependencyService.Get<iFirebaseAuth>().ResetPassword(EmailEntry.Text);
+
+                if (res.Status == true)
                 {
-                    await DisplayAlert("Success", "Email has been sent to your email address.", "Okay");
+                    await DisplayAlert("Success", res.Response, "Okay");
                     await Navigation.PopAsync();
                 }
                 else
                 {
-                    await DisplayAlert("Error", "Account non-existent.", "Okay");
+                    await DisplayAlert("Error", res.Response, "Okay");
                 }
             }
         }
