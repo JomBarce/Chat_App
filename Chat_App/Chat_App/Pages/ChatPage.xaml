@@ -4,7 +4,8 @@
              x:Class="Chat_App.ChatPage"
              Title="ChatPage"
              x:Name="chatPage"
-             xmlns:controls="clr-namespace:Chat_App.CustomRenderers">
+             xmlns:controls="clr-namespace:Chat_App.CustomRenderers" 
+             xmlns:local="clr-namespace:Chat_App">
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
@@ -13,9 +14,8 @@
                     <controls:BorderlessEntry x:Name="SearchEntry" Placeholder="Search user email" Keyboard="Email" 
                                               ClearButtonVisibility="WhileEditing" Completed="Search_Clicked"/>
                 </Grid>
-                <ListView x:Name="ContactsList" Margin="10,5,10,5" SeparatorVisibility="None" VerticalScrollBarVisibility="Never"
-                          ItemTapped="Contact_Clicked" ItemsSource="{Binding Source={x:Reference chatPage}, Path=BindingContext.MyList}"
-                          HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}">
+                <ListView x:Name="contactsList" Margin="10,5,10,5" SeparatorVisibility="None" VerticalScrollBarVisibility="Never"
+                          HorizontalOptions="Fill" ItemTapped="Contact_Clicked" IsVisible="false">
                     <ListView.RowHeight>
                         <OnPlatform x:TypeArguments="x:Int32">
                             <On Platform="iOS, Android" Value="55"/>
@@ -26,9 +26,27 @@
                             <ViewCell>
                                 <Frame HasShadow="False" OutlineColor="#f5655b" CornerRadius="5" Padding="5,0" Margin="0,2,0,2" 
                                        BackgroundColor="Transparent">
+                                    <Frame.Triggers>
+                                        <DataTrigger TargetType="Frame" Binding="{Binding contactID, Converter={StaticResource 
+                                                     IsOwnerConverter}}" Value="True"/>
+                                    </Frame.Triggers>
                                     <StackLayout HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand" Spacing="0">
-                                        <Label Text="{Binding Name}" TextColor="{x:DynamicResource TextColor}" FontSize="20"/>
-                                        <Label Text="{Binding Email}" TextColor="{x:DynamicResource TextColor}" FontSize="15"/>
+                                        <Label Text="{Binding contactName[0]}" TextColor="{x:DynamicResource TextColor}" FontSize="20">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding contactID, Converter={StaticResource
+                                                                 IsOwnerConverter}}" Value="True">
+                                                    <Setter Property="Text" Value="{Binding contactName[1]}"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
+                                        <Label Text="{Binding contactEmail[0]}" TextColor="{x:DynamicResource TextColor}" FontSize="15">
+                                            <Label.Triggers>
+                                                <DataTrigger TargetType="Label" Binding="{Binding contactID, Converter={StaticResource
+                                                             IsOwnerConverter}}" Value="True">
+                                                    <Setter Property="Text" Value="{Binding contactEmail[1]}"/>
+                                                </DataTrigger>
+                                            </Label.Triggers>
+                                        </Label>
                                     </StackLayout>
                                 </Frame>
                             </ViewCell>
@@ -36,8 +54,10 @@
                     </ListView.ItemTemplate>
                 </ListView>
             </StackLayout>
-            <Label x:Name="EmptyContact" Text="You have no contacts as of the moment." VerticalOptions="CenterAndExpand" FontSize="25"
-                   HorizontalTextAlignment="Center" TextColor="{x:DynamicResource TextColor}" IsVisible="false"/>
+            <Label x:Name="emptyListLabel" Text="You have no contacts as of the moment." VerticalOptions="CenterAndExpand" FontSize="25"
+                   HorizontalTextAlignment="Center" TextColor="{x:DynamicResource TextColor}" IsVisible="true"/>
+            <local:Loading Grid.Row="0" Grid.Column="0" x:Name="loading" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                       IsVisible="False"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

@@ -46,7 +46,8 @@
                 </Grid>
             </StackLayout>
         </StackLayout>
+        <local:Loading Grid.Row="0" Grid.Column="0" x:Name="loading" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" 
+                       IsVisible="False"/>
     </Grid>
-
 </ContentPage>
 

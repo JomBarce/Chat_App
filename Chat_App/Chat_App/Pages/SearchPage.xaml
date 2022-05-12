@@ -3,28 +3,44 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Chat_App.SearchPage"
              Title="SearchPage"
-             x:Name="searchPage"
-             xmlns:local="clr-namespace:Chat_App">
+             x:Name="searchPage">
     <NavigationPage.TitleView BarBackgroundColor="#1976D2">
         <Label Text="Add Contact" TextColor="White" FontSize="20"/>
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
-            <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="CenterAndExpand">
-                <Frame Padding="0" HorizontalOptions="Center" CornerRadius="200" HeightRequest="250" WidthRequest="250" HasShadow="False"
-                       BorderColor="{x:DynamicResource BorderColor}" IsClippedToBounds="True">
-                    <Image x:Name="ProfilePic" Source="defaultpic" Aspect="AspectFit"/>
-                </Frame>
-                <StackLayout Margin="10,10,10,0">
-                    <Label x:Name="NameLabel" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="30"
-                           TextColor="{x:DynamicResource TextColor}" Text="Tester Testing"/>
-                    <Label x:Name="EmailLabel" VerticalOptions="CenterAndExpand" HorizontalTextAlignment="Center" FontSize="25"
-                           TextColor="{x:DynamicResource TextColor}" Text="tester@email.com"/>
-                    <Frame Padding="0" Margin="0,5,0,0" HasShadow="False" CornerRadius="5">
-                        <local:CustomButton Text="Add" Clicked="AddButton_Clicked" BackgroundColor="{x:DynamicResource SubmitButton}"
-                                            TextColor="{x:DynamicResource TextColor}"/>
-                    </Frame>
-                </StackLayout>
+            <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
+                <ListView x:Name="resultList" Margin="10,5,10,5" SeparatorVisibility="None" VerticalScrollBarVisibility="Never"
+                          HorizontalOptions="Fill" ItemTapped="Result_Clicked">
+                    <ListView.RowHeight>
+                        <OnPlatform x:TypeArguments="x:Int32">
+                            <On Platform="iOS, Android" Value="200"/>
+                        </OnPlatform>
+                    </ListView.RowHeight>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Frame HasShadow="False" OutlineColor="#f5655b" CornerRadius="5" Padding="5" Margin="0,2,0,2" 
+                                       BackgroundColor="Transparent">
+                                    <Frame.Triggers>
+                                        <DataTrigger TargetType="Frame" Binding="{Binding uid}" Value="True"/>
+                                    </Frame.Triggers>
+                                    <StackLayout HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Spacing="0">
+                                        <Frame Padding="0" HorizontalOptions="Center" CornerRadius="100" HeightRequest="100" 
+                                               WidthRequest="100" HasShadow="False" IsClippedToBounds="True"
+                                               BorderColor="{x:DynamicResource BorderColor}" >
+                                            <Image x:Name="ProfilePic" Source="defaultpic" Aspect="AspectFit"/>
+                                        </Frame>
+                                        <Label Text="{Binding name}" TextColor="{x:DynamicResource TextColor}" FontSize="25"
+                                               HorizontalOptions="Center"/>
+                                        <Label Text="{Binding email}" TextColor="{x:DynamicResource TextColor}" FontSize="18"
+                                               HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                </Frame>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

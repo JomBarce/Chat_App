@@ -2,40 +2,35 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Chat_App.ConversationPage"
+             Title="ChatPage"
              x:Name="conversationPage"
-             xmlns:controls="clr-namespace:Chat_App.CustomRenderers" 
-             xmlns:converters="clr-namespace:Chat_App">
-    <ContentPage.Resources>
-        <ResourceDictionary>
-            <converters:Inverter x:Key="Inverter" />
-        </ResourceDictionary>
-    </ContentPage.Resources>
+             xmlns:controls="clr-namespace:Chat_App.CustomRenderers">
     <NavigationPage.TitleView BarBackgroundColor="#1976D2">
         <Label x:Name="NavTitle" Text="" TextColor="White" FontSize="20"/>
     </NavigationPage.TitleView>
     <ContentPage.Content>
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
-                <ListView x:Name="Messages" Margin="10,5,10,0" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" 
-                          HasUnevenRows="True" ItemsSource="{Binding Source={x:Reference conversationPage}, Path=BindingContext.Message}"
-                          HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}">
+                <ListView x:Name="messagesList" Margin="10,5,10,0" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" 
+                          HasUnevenRows="True" HorizontalOptions="Fill">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell IsEnabled="false">
-                                <Grid RowDefinitions="auto, auto">
-                                    <Grid ColumnDefinitions="*, *" IsVisible="{Binding IsOwner}">
-                                        <Frame HasShadow="False" Grid.Column="1" Padding="10" CornerRadius="15" HorizontalOptions="End" 
-                                               BackgroundColor="{x:DynamicResource SenderColor}">
-                                            <Label Text="{Binding Message}" TextColor="{x:DynamicResource TextColor}" FontSize="15" LineBreakMode="WordWrap"/>
-                                        </Frame>
-                                    </Grid>
-                                    <Grid ColumnDefinitions="*, 40"  Grid.Row="1" IsVisible="{Binding IsOwner, Converter={StaticResource Inverter}}">
-                                        <Frame HasShadow="False" Grid.Column="0" Padding="10" CornerRadius="15" HorizontalOptions="Start" 
-                                               BackgroundColor="{x:DynamicResource ReceiverColor}">
-                                            <Label Text="{Binding Message}" TextColor="{x:DynamicResource TextColor}" FontSize="15" LineBreakMode="WordWrap"/>
-                                        </Frame>
-                                    </Grid>
-                                </Grid>
+                                <ContentView >
+                                    <Frame Margin="5,5,30,5"  HorizontalOptions="Start" HasShadow="False" Padding="5" CornerRadius="15"
+                                                 BackgroundColor="{x:DynamicResource ReceiverColor}">
+                                        <Frame.Triggers>
+                                            <DataTrigger TargetType="Frame" Value="True" 
+                                                         Binding="{Binding .,Converter={StaticResource IsViewerConverter}}">
+                                                <Setter Property="HorizontalOptions" Value="End"/>
+                                                <Setter Property="Margin" Value="30,5,5,5"/>
+                                                <Setter Property="BackgroundColor" Value="{x:DynamicResource SenderColor}"/>
+                                            </DataTrigger>
+                                        </Frame.Triggers>   
+                                        <Label Text="{Binding message}" Margin="5" HorizontalOptions="Start" FontSize="15"
+                                               HorizontalTextAlignment="Start" VerticalTextAlignment="Center"/>
+                                    </Frame>
+                                </ContentView>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
@@ -44,14 +39,16 @@
                     <StackLayout VerticalOptions="EndAndExpand" Grid.Row="1" Orientation="Horizontal">
                         <Grid HorizontalOptions="FillAndExpand" Padding="0">
                             <Frame HasShadow="False" x:Name="MessageFrame" BorderColor="{x:DynamicResource BorderColor}" CornerRadius="5"/>
-                            <controls:BorderlessEntry x:Name="MessageEntry" Placeholder="Write your message here..." Keyboard="Text"
-                                                      Completed="Send_Clicked" Focused="OnFocused"/>
+                            <controls:BorderlessEditor  x:Name="MessageEntry" Placeholder="Write your message here..." Keyboard="Text" 
+                                                        Focused="OnFocused" Completed="Send_Clicked" AutoSize="TextChanges" MaxLength="240"/>
                         </Grid>
                         <ImageButton Source="send" BackgroundColor="Transparent" Margin="5" Clicked="Send_Clicked"
                                      HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=20'}"/>
                     </StackLayout>
                 </Frame>
             </StackLayout>
+            <Label x:Name="emptyListLabel" Text="You can now start a conversation with this person." VerticalOptions="CenterAndExpand" FontSize="25"
+                   HorizontalTextAlignment="Center" TextColor="{x:DynamicResource TextColor}" IsVisible="true"/>
         </Grid>
     </ContentPage.Content>
 </ContentPage>

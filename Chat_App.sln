@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat_App.Android", "Chat_Ap
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat_App.iOS", "Chat_App\Chat_App.iOS\Chat_App.iOS.csproj", "{4EBBE689-74F5-4CD6-B727-5CB49D7D7323}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chat_App", "Chat_App\Chat_App\Chat_App.csproj", "{4F6ACC8D-8B3F-4F70-AD11-F06C8C5D4862}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chat_App", "Chat_App\Chat_App\Chat_App.csproj", "{4F6ACC8D-8B3F-4F70-AD11-F06C8C5D4862}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

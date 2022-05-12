@@ -23,6 +23,7 @@ namespace Chat_App
             }
             else
             {
+                loading.IsVisible = true;
                 FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
                 res = await DependencyService.Get<iFirebaseAuth>().LoginWithEmailPassword(EmailEntry.Text, PasswordEntry.Text);
                 if (res.Status == true)
@@ -39,6 +40,7 @@ namespace Chat_App
                         EmailEntry.Focus();
                     }
                 }
+                loading.IsVisible = false;
             }
         }
             

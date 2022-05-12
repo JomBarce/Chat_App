@@ -21,7 +21,8 @@ namespace Chat_App
                await DisplayAlert("Error", "Missing field.", "Okay");
             }
             else
-            {  
+            {
+                loading.IsVisible = true;
                 FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
                 res = await DependencyService.Get<iFirebaseAuth>().ResetPassword(EmailEntry.Text);
 
@@ -34,6 +35,7 @@ namespace Chat_App
                 {
                     await DisplayAlert("Error", res.Response, "Okay");
                 }
+                loading.IsVisible = false;
             }
         }
 

@@ -35,16 +35,20 @@ namespace Chat_App
 
         private async void LogoutButton_Clicked(object sender, EventArgs e)
         {
-            FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
-            res = DependencyService.Get<iFirebaseAuth>().SignOut();
+            bool retryBool = await DisplayAlert("Sign out", "Would you like to sign out?", "Yes", "No");
+            if (retryBool)
+            {
+                FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+                res = DependencyService.Get<iFirebaseAuth>().SignOut();
 
-            if (res.Status == true)
-            {
-                App.Current.MainPage = new NavigationPage(new MainPage());
-            }
-            else
-            {
-                await DisplayAlert("Error", res.Response, "Okay");
+                if (res.Status == true)
+                {
+                    App.Current.MainPage = new NavigationPage(new MainPage());
+                }
+                else
+                {
+                    await DisplayAlert("Error", res.Response, "Okay");
+                }
             }
         }
     }

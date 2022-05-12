@@ -142,7 +142,7 @@ namespace Chat_App.Droid
                     email = email,
                     name = defaultName,
                     userType = 0,
-                    created_at = DateTime.UtcNow
+                    created_at = DateTime.UtcNow.ToString("yyyy-MM-dd-HH:mm:ss")
                 };
                 return response;
             }

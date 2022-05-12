@@ -1,45 +1,28 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Chat_App
 {
-    public class ConversationModel
+    public class ConversationModel : INotifyPropertyChanged
     {
-        private int id;
-        public int Id
-        {
-            get { return id; }
-            set { id = value; }
-        }
+        string _id { get; set; }
+        public string id { get { return _id; } set { _id = value; OnPropertyChanged(nameof(id)); } }
 
-        private string message;
-        public string Message
-        {
-            get { return message; }
-            set { message = value; }
-        }
-        
-        public int converseeID;
-        public int ConverseeID
-        {
-            get { return converseeID; }
-            set { converseeID = value; }
-        }
+        string _message { get; set; }
+        public string message { get { return _message; } set { _message = value; OnPropertyChanged(nameof(message)); } }
 
-        private DateTime timeCreated;
-        public DateTime TimeCreated
-        {
-            get{ return timeCreated; }
-            set{ timeCreated = value; }
-        }
+        string _converseeID { get; set; }
+        public string converseeID { get { return _converseeID; } set { _converseeID = value; OnPropertyChanged(nameof(converseeID)); } }
 
-        private bool isOwner;
+        string _created_at { get; set; }
+        public string created_at { get { return _created_at; } set { _created_at = value; OnPropertyChanged(nameof(created_at)); } }
 
-        public bool IsOwner
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")
         {
-            get { return isOwner; }
-            set { isOwner = value; }
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

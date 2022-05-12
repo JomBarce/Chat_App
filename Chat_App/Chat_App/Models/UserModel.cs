@@ -2,31 +2,29 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Chat_App
 { 
     public class UserModel : INotifyPropertyChanged
     {
-        string _uid { get; set; }
-        public string uid { get { return _uid; } set { _uid = value; OnPropertyChanged(nameof(uid)); } }
-        string _email { get; set; }
-        public string email { get { return _email; } set { _email = value; OnPropertyChanged(nameof(email)); } }
+        string Uid { get; set; }
+        public string uid { get { return Uid; } set { Uid = value; OnPropertyChanged(nameof(uid)); } }
+        
+        string Email { get; set; }
+        public string email { get { return Email; } set { Email = value; OnPropertyChanged(nameof(email)); } }
 
-        string _name { get; set; }
-        public string name { get { return _name; } set { _name = value; OnPropertyChanged(nameof(name)); } }
+        string Name { get; set; }
+        public string name { get { return Name; } set { Name = value; OnPropertyChanged(nameof(name)); } }
 
-        /// <summary>
-        /// User Type
-        /// 0 - Email
-        /// 1 - Social Google
-        /// 2 - Social Facebook
-        /// </summary>
-        int _userType { get; set; }
-        public int userType { get { return _userType; } set { _userType = value; OnPropertyChanged(nameof(userType)); } }
+        int UserType { get; set; }
+        public int userType { get { return UserType; } set { UserType = value; OnPropertyChanged(nameof(userType)); } }
 
-        DateTime _created_at { get; set; }
-        public DateTime created_at { get { return _created_at; } set { _created_at = value; OnPropertyChanged(nameof(created_at)); } }
+        List<string> Contacts { get; set; }
+        public List<string> contacts { get { return Contacts; } set { Contacts = value; OnPropertyChanged(nameof(contacts)); } }
+
+        string Created_at { get; set; }
+        public string created_at { get { return Created_at; } set { Created_at = value; OnPropertyChanged(nameof(created_at)); } }
+
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = "")

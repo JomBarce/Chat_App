@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Plugin.CloudFirestore;
+using System;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -8,37 +11,65 @@ namespace Chat_App
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ChatPage : ContentPage
     {
-        bool hasContact = true;
-        private ObservableCollection<ContactModel> myList;
+        private ObservableCollection<ContactModel> contactList = new ObservableCollection<ContactModel>();
 
-        public ObservableCollection<ContactModel> MyList
-        {
-            get { return myList; }
-            set { myList = value; }
-        }
+        DataClass dataClass = DataClass.GetInstance;
 
+        [Obsolete]
         public ChatPage()
         { 
             InitializeComponent();
-            if (hasContact == false)
-            {
-                EmptyContact.IsVisible = true;
-            }
-            else
-            {
-                EmptyContact.IsVisible = false;
-                this.BindingContext = this;
-                MyList = new ObservableCollection<ContactModel>();
-
-                for (int i = 1; i < 15; i++)
-                {
-                    MyList.Add(new ContactModel() { Id = i, Name = "Name LastName" + i.ToString(), Email = "email" + i.ToString() + "@email.com" });
-                }
-
-                ContactsList.ItemsSource = MyList;
-            }
+            GetContacts();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
         }
 
+        [Obsolete]
+        private void GetContacts()
+        {
+            CrossCloudFirestore.Current.Instance.GetCollection("contacts")
+                .WhereArrayContains("contactID", dataClass.loggedInUser.uid)
+                .AddSnapshotListener((snapshot, error) =>
+                {
+                    loading.IsVisible = true;
+                    if (snapshot != null)
+                    {
+                        foreach (var documentChange in snapshot.DocumentChanges)
+                        {
+                            var json = JsonConvert.SerializeObject(documentChange.Document.Data);
+                            var obj = JsonConvert.DeserializeObject<ContactModel>(json);
+                            switch (documentChange.Type)
+                            {
+                                case DocumentChangeType.Added:
+                                    contactList.Add(obj);
+                                    break;
+                                case DocumentChangeType.Modified:
+                                    if (contactList.Where(c => c.id == obj.id).Any())
+                                    {
+                                        var item = contactList.Where(c => c.id == obj.id).FirstOrDefault();
+                                        item = obj;
+                                    }
+                                    break;
+                                case DocumentChangeType.Removed:
+                                    if (contactList.Where(c => c.id == obj.id).Any())
+                                    {
+                                        var item = contactList.Where(c => c.id == obj.id).FirstOrDefault();
+                                        contactList.Remove(obj);
+                                    }
+                                    break;
+                            }
+                        }
+                    }
+                    contactsList.ItemsSource = contactList;
+                    emptyListLabel.IsVisible = contactList.Count == 0;
+                    contactsList.IsVisible = !(contactList.Count == 0);
+                    loading.IsVisible = false;
+                });
+        }
+
+        [Obsolete]
         private async void Search_Clicked(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(SearchEntry.Text))
@@ -47,18 +78,12 @@ namespace Chat_App
             }
             else
             {
-                if (SearchEntry.Text == "tester@email.com")
-                {
-                    SearchEntry.Text = string.Empty;
-                    await Navigation.PushAsync(new SearchPage(), true);
-                }
-                else
-                {
-                    await DisplayAlert("", "User not found.", "Okay");
-                }
+                await Navigation.PushAsync(new SearchPage(SearchEntry.Text), true);
+                SearchEntry.Text = string.Empty;
             }
         }
 
+        [Obsolete]
         async private void Contact_Clicked(object sender, ItemTappedEventArgs e)
         {
             ContactModel selectedItem = e.Item as ContactModel;
