@@ -19,6 +19,7 @@ namespace Chat_App
         public ChatPage()
         { 
             InitializeComponent();
+            contactsList.ItemsSource = contactList;
             GetContacts();
         }
         protected override void OnAppearing()
@@ -62,7 +63,6 @@ namespace Chat_App
                             }
                         }
                     }
-                    contactsList.ItemsSource = contactList;
                     emptyListLabel.IsVisible = contactList.Count == 0;
                     contactsList.IsVisible = !(contactList.Count == 0);
                     loading.IsVisible = false;
