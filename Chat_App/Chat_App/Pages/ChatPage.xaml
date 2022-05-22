@@ -15,7 +15,8 @@
                                               ClearButtonVisibility="WhileEditing" Completed="Search_Clicked"/>
                 </Grid>
                 <ListView x:Name="contactsList" Margin="10,5,10,5" SeparatorVisibility="None" VerticalScrollBarVisibility="Never"
-                          HorizontalOptions="Fill" ItemTapped="Contact_Clicked" IsVisible="false">
+                          HorizontalOptions="Fill" ItemTapped="Contact_Clicked" IsVisible="false" IsPullToRefreshEnabled="True"
+                          HeightRequest="{Binding Converter={StaticResource scale}, ConverterParameter='height=500'}">
                     <ListView.RowHeight>
                         <OnPlatform x:TypeArguments="x:Int32">
                             <On Platform="iOS, Android" Value="55"/>

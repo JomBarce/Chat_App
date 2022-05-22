@@ -8,6 +8,7 @@ using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
 using Xamarin.Forms.Xaml;
 using Newtonsoft.Json;
 using Plugin.CloudFirestore;
+using System.Diagnostics;
 
 namespace Chat_App
 {
@@ -27,6 +28,23 @@ namespace Chat_App
             contact = obj;
             NavTitle.Text = (obj.contactID[0] == dataClass.loggedInUser.uid)? obj.contactName[1] : obj.contactName[0];
             GetMessages();
+
+            messagesList.RefreshCommand = new Command(() => {
+                messagesList.IsRefreshing = true;
+                try
+                {
+                    message.Clear();
+                    GetMessages();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    messagesList.IsRefreshing = false;
+                }
+            });
         }
 
         [Obsolete]

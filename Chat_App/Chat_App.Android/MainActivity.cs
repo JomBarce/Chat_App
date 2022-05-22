@@ -1,11 +1,9 @@
-﻿using System;
-
-using Android.App;
+﻿using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
 using Android.OS;
 using Xamarin.Forms;
 using Firebase;
+using AndroidX.AppCompat.App;
 
 namespace Chat_App.Droid
 {
@@ -14,6 +12,7 @@ namespace Chat_App.Droid
     {
         protected override void OnCreate(Bundle savedInstanceState)
         {
+            AppCompatDelegate.DefaultNightMode = AppCompatDelegate.ModeNightNo;
             var density = Resources.DisplayMetrics.Density;
             App.screenWidth = Resources.DisplayMetrics.WidthPixels / density;
             App.screenHeight = Resources.DisplayMetrics.HeightPixels / density;

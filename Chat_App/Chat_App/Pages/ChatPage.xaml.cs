@@ -2,6 +2,7 @@
 using Plugin.CloudFirestore;
 using System;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -19,9 +20,28 @@ namespace Chat_App
         public ChatPage()
         { 
             InitializeComponent();
+            contactList.Clear();
             contactsList.ItemsSource = contactList;
             GetContacts();
+
+            contactsList.RefreshCommand = new Command(() => {
+                contactsList.IsRefreshing = true;
+                try
+                {
+                    contactList.Clear();
+                    GetContacts();
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine(ex);
+                }
+                finally
+                {
+                    contactsList.IsRefreshing = false;
+                }
+            });
         }
+
         protected override void OnAppearing()
         {
             base.OnAppearing();

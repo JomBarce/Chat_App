@@ -12,7 +12,7 @@
         <Grid HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <StackLayout HorizontalOptions="CenterAndExpand" VerticalOptions="StartAndExpand">
                 <ListView x:Name="messagesList" Margin="10,5,10,0" SeparatorVisibility="None" VerticalScrollBarVisibility="Never" 
-                          HasUnevenRows="True" HorizontalOptions="Fill">
+                          HasUnevenRows="True" HorizontalOptions="FillAndExpand" IsPullToRefreshEnabled="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell IsEnabled="false">
